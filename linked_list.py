@@ -2,7 +2,14 @@
 from __future__ import unicode_literals
 
 
+class Node(object):
+    def __init__(self, value, next_node=None):
+        self.value = value
+        self.next = next_node
+
+
 class LinkedList(object):
+
     def __init__(self, values=None):
         self.head = None
 
@@ -33,27 +40,59 @@ class LinkedList(object):
         return count
 
     def search(self, val):
-        pass
+        current = self.head
+        if current:
+            while current.next:
+                if current.value == val:
+                    return current
+                current = current.next
+            if current.value == val:
+                    return current
 
     def remove(self, node):
-        pass
+        current = self.head
+        if current:
+            # check head node
+            if current == node:
+                self.head = self.head.next
+                current.next = None
+            # check middle nodes
+            while current.next:
+                if current.next == node:
+                    current.next = current.next.next
+                    current.next.next = None
+                current = current.next
+            # check last node
+
+
+
 
     def display(self):
-        print repr(self)
+        output = ()
+        current = self.head
+        if current:
+            while current.next:
+                output += (current.value,)
+                current = current.next
+            output += (current.value,)
+            return output
+        return ()
 
     def __repr__(self):
-        if not self.head:
-            return 'The list is empty.'
-        current = self.head
-        my_list = '(' + str(current.value)
-        while current.next:
-            current = current.next
-            my_list += ', ' + str(current.value)
-        my_list += ')'
-        return my_list
+        return self.display()
 
 
-class Node(object):
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next = next_node
+if __name__ == '__main__':
+    mylist = LinkedList()
+    # print(mylist)
+    mylist.insert(3)
+    mylist.insert(2)
+    mylist.insert(6)
+    # print(mylist)
+    print(mylist.display())
+    print("list size: " + str(mylist.size()))
+    mynode = mylist.search(3)
+    print(str(mynode.value))
+    print(mynode)
+    mylist.remove(mynode)
+    print(mylist.display())

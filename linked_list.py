@@ -13,6 +13,11 @@ class LinkedList(object):
     def __init__(self, values=None):
         self.head = None
 
+        # if iterable supplied, add all elements
+        if values:
+            for v in values:
+                self.insert(v)
+
     def insert(self, val):
         self.head = Node(val, self.head)
 
@@ -48,6 +53,7 @@ class LinkedList(object):
                 current = current.next
             if current.value == val:
                     return current
+        return None
 
     def remove(self, node):
         ''' InteractivePython.org helped with this function. '''
@@ -99,3 +105,5 @@ if __name__ == '__main__':
     print(mynode)
     mylist.remove(mynode)
     print(mylist.display())
+    newlist = LinkedList([1, 2, 3])
+    print(newlist.display())

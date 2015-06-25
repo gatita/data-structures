@@ -18,11 +18,8 @@ class Stack(object):
         self.container.insert(value)
 
     def pop(self):
-        try:
-            self.container.pop()
-        except:
-            print("nothing to pop")
-            raise IndexError
+        return self.container.pop()
+
 
 
 if __name__ == '__main__':
@@ -34,5 +31,5 @@ if __name__ == '__main__':
     mystack.push(8)
     print(mystack.container.display())
     for i in range(6):
-        mystack.pop()
+        print(mystack.pop())
     print(mystack.container.display())

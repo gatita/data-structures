@@ -24,6 +24,7 @@ class LinkedList(object):
     def pop(self):
         # check to see if list is empty
         if not self.head:
+            raise IndexError
             return 'The list is empty.'
         # add head to tmp val
         tmp = self.head

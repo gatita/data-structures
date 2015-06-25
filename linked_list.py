@@ -50,22 +50,25 @@ class LinkedList(object):
                     return current
 
     def remove(self, node):
+        ''' InteractivePython.org helped with this function. '''
         current = self.head
-        if current:
-            # check head node
+        previous = None
+
+        # find node, get pointers in right places
+        while True:
             if current == node:
-                self.head = self.head.next
-                current.next = None
-            # check middle nodes
-            while current.next:
-                if current.next == node:
-                    current.next = current.next.next
-                    current.next.next = None
+                break
+            else:
+                previous = current
                 current = current.next
-            # check last node
 
-
-
+        # check if head node
+        if self.head == node:
+            self.head = current.next
+        # not head node
+        else:
+            previous.next = current.next
+            current.next = None
 
     def display(self):
         output = ()
@@ -91,7 +94,7 @@ if __name__ == '__main__':
     # print(mylist)
     print(mylist.display())
     print("list size: " + str(mylist.size()))
-    mynode = mylist.search(3)
+    mynode = mylist.search(6)
     print(str(mynode.value))
     print(mynode)
     mylist.remove(mynode)

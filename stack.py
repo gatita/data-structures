@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from __future__ import print_function
 
 import linked_list as ll
 
@@ -8,15 +9,20 @@ class Stack(object):
 
     def __init__(self, values=None):
         '''stack has-a linked list'''
-        if values:
+        if values is not None:
             self.container = ll.LinkedList(values)
-        self.container = ll.LinkedList()
+        else:
+            self.container = ll.LinkedList()
 
     def push(self, value):
         self.container.insert(value)
 
     def pop(self):
-        self.container.pop()
+        try:
+            self.container.pop()
+        except:
+            print("nothing to pop")
+            raise IndexError
 
 
 if __name__ == '__main__':
@@ -26,4 +32,7 @@ if __name__ == '__main__':
     mystack.pop()
     mystack.push(9)
     mystack.push(8)
+    print(mystack.container.display())
+    for i in range(6):
+        mystack.pop()
     print(mystack.container.display())

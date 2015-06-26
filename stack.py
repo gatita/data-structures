@@ -21,7 +21,6 @@ class Stack(object):
         return self.container.pop()
 
 
-
 if __name__ == '__main__':
     # local tests
     mystack = Stack([1, 2, 3])

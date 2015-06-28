@@ -25,22 +25,17 @@ class LinkedList(object):
         # check to see if list is empty
         if not self.head:
             raise IndexError
-            return 'The list is empty.'
+
         # add head to tmp val
         tmp = self.head
         # make new head old head's next
         self.head = self.head.next
-        # remove tmps link to list
-        tmp.next = None
-        # return tmp.value
         return tmp.value
 
     def size(self):
-        count = 1
-        if not self.head:
-            return 0
+        count = 0
         current = self.head
-        while current.next:
+        while current:
             count += 1
             current = current.next
         return count

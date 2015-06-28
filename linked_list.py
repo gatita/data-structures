@@ -78,15 +78,16 @@ class LinkedList(object):
             current.next = None
 
     def display(self):
-        output = ()
-        current = self.head
-        if current:
-            while current.next:
-                output += (current.value,)
-                current = current.next
-            output += (current.value,)
+        output = self.head
+        if output:
+            output = "("
+            while output.next:
+                output += str(output.val) + ','
+                output = output.next
+            output += str(output.val) + ')'
             return output
-        return ()
+        else:
+            return "()"
 
     def __repr__(self):
         return self.display()
@@ -94,11 +95,10 @@ class LinkedList(object):
 
 if __name__ == '__main__':
     mylist = LinkedList()
-    # print(mylist)
+    print(mylist)
     mylist.insert(3)
     mylist.insert(2)
     mylist.insert(6)
-    # print(mylist)
     print(mylist.display())
     print("list size: " + str(mylist.size()))
     mynode = mylist.search(6)

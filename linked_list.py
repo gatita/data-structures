@@ -42,14 +42,11 @@ class LinkedList(object):
 
     def search(self, val):
         current = self.head
-        if current:
-            while current.next:
-                if current.value == val:
-                    return current
-                current = current.next
+        while current:
             if current.value == val:
-                    return current
-        return None
+                break
+            current = current.next
+        return current
 
     def remove(self, node):
         ''' InteractivePython.org helped with this function. '''

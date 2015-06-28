@@ -70,13 +70,13 @@ class LinkedList(object):
             current.next = None
 
     def display(self):
-        output = self.head
-        if output:
+        current = self.head
+        if current:
             output = "("
-            while output.next:
-                output += str(output.val) + ','
-                output = output.next
-            output += str(output.val) + ')'
+            while current.next:
+                output += str(current.value) + ', '
+                current = current.next
+            output += str(current.value) + ')'
             return output
         else:
             return "()"

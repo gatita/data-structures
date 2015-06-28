@@ -6,15 +6,14 @@ from stack import Stack
 
 
 def parenthetics(str):
-    open_chars = '('
-    close_chars = ')'
+    """Check for matching opening and closing characters."""
 
     open_stack = Stack()
 
     for c in str:
-        if c in open_chars:
+        if c == '(':
             open_stack.push(c)
-        elif c in close_chars:
+        elif c == ')':
             try:
                 open_stack.pop()
             except:
@@ -29,9 +28,3 @@ def parenthetics(str):
 
     # open string
     return 1
-
-
-if __name__ == '__main__':
-    print(parenthetics('()'))           # 0
-    print(parenthetics('())'))          # -1
-    print(parenthetics('(()'))          # 1

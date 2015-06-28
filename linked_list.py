@@ -25,36 +25,28 @@ class LinkedList(object):
         # check to see if list is empty
         if not self.head:
             raise IndexError
-            return 'The list is empty.'
+
         # add head to tmp val
         tmp = self.head
         # make new head old head's next
         self.head = self.head.next
-        # remove tmps link to list
-        tmp.next = None
-        # return tmp.value
         return tmp.value
 
     def size(self):
-        count = 1
-        if not self.head:
-            return 0
+        count = 0
         current = self.head
-        while current.next:
+        while current:
             count += 1
             current = current.next
         return count
 
     def search(self, val):
         current = self.head
-        if current:
-            while current.next:
-                if current.value == val:
-                    return current
-                current = current.next
+        while current:
             if current.value == val:
-                    return current
-        return None
+                break
+            current = current.next
+        return current
 
     def remove(self, node):
         ''' InteractivePython.org helped with this function. '''
@@ -78,15 +70,16 @@ class LinkedList(object):
             current.next = None
 
     def display(self):
-        output = ()
         current = self.head
         if current:
+            output = "("
             while current.next:
-                output += (current.value,)
+                output += str(current.value) + ', '
                 current = current.next
-            output += (current.value,)
+            output += str(current.value) + ')'
             return output
-        return ()
+        else:
+            return "()"
 
     def __repr__(self):
         return self.display()
@@ -94,11 +87,10 @@ class LinkedList(object):
 
 if __name__ == '__main__':
     mylist = LinkedList()
-    # print(mylist)
+    print(mylist)
     mylist.insert(3)
     mylist.insert(2)
     mylist.insert(6)
-    # print(mylist)
     print(mylist.display())
     print("list size: " + str(mylist.size()))
     mynode = mylist.search(6)

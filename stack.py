@@ -9,10 +9,7 @@ class Stack(object):
 
     def __init__(self, values=None):
         '''stack has-a linked list'''
-        if values is not None:
-            self.container = ll.LinkedList(values)
-        else:
-            self.container = ll.LinkedList()
+        self.container = ll.LinkedList(values)
 
     def push(self, value):
         self.container.insert(value)
@@ -23,6 +20,8 @@ class Stack(object):
 
 if __name__ == '__main__':
     # local tests
+    my_stack = Stack()
+    print(my_stack.container.display())
     mystack = Stack([1, 2, 3])
     print(mystack.container.display())
     mystack.pop()

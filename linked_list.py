@@ -18,6 +18,9 @@ class LinkedList(object):
             for v in values:
                 self.insert(v)
 
+    def __len__(self):
+        return self.size()
+
     def insert(self, val):
         self.head = Node(val, self.head)
 

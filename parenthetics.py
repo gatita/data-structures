@@ -9,7 +9,8 @@ def parenthetics(string):
     possible values:
         1: If the string is 'open' (there are open parens that are not closed)
         0: If the string is 'balanced' (there are an equal number of open and
-            close parentheses in the string)
+            close parentheses in the string). Will also return 0 if there are
+            no parentheses in the string.
         -1: If the string is 'broken' (a closing parens has not been proceeded
             by one that opens)
     """

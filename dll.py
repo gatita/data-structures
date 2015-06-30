@@ -10,7 +10,7 @@ class Node(object):
 
 
 class DLL(object):
-    def __init__(self, vals):
+    def __init__(self, vals=None):
         self.head = None
         self.tail = None
 
@@ -29,9 +29,21 @@ class DLL(object):
     def append(self, val):
         """Append the value 'val' at the tail of the list"""
         new = Node(val)
+        if self.tail is None:
+            self.head = self.tail = new
+        else:
+            new.prev = self.tail
+            self.tail.next = new
+            self.tail = new
 
     def pop(self):
-        pass
+        if not self.head:
+            raise IndexError
+        else:
+            tmp = self.head
+            self.head.next.prev = None
+            self.head = self.head.next
+            return tmp.val
 
     def shift(self):
         pass

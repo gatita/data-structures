@@ -41,13 +41,15 @@ class DLL(object):
             self.tail = new
 
     def pop(self):
+        tmp = self.head
         if not self.head:
             raise IndexError
+        elif self.head == self.tail:
+            self.head = self.tail = None
         else:
-            tmp = self.head
             self.head.next.prev = None
             self.head = self.head.next
-            return tmp.val
+        return tmp.val
 
     def shift(self):
         if not self.head:

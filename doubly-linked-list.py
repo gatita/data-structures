@@ -3,13 +3,13 @@ from __future__ import unicode_literals
 
 
 class Node(object):
-    def __init__(self, val):
+    def __init__(self, val, next=None, prev=None):
         self.val = val
         self.next = None
         self.prev = None
 
 
-class DoublyLL(object):
+class DLL(object):
     def __init__(self, vals):
         self.head = None
         self.tail = None
@@ -20,14 +20,15 @@ class DoublyLL(object):
         """Insert the value 'val' at the head of the list"""
         new = Node(val)
         if self.head is None:
-            self.head, self.tail = new
+            self.head = self.tail = new
         else:
-            tmp = self.head
-            
+            new.next = self.head
+            self.head.prev = new
+            self.head = new
 
     def append(self, val):
         """Append the value 'val' at the tail of the list"""
-        pass
+        new = Node(val)
 
     def pop(self):
         pass

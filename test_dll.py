@@ -25,7 +25,7 @@ def test_create_list_empty(make_list_empty):
     assert make_list_empty.tail is None
 
 
-def test_create_list_(make_list_three):
+def test_create_list(make_list_three):
     assert make_list_three.head.val == 3
     assert make_list_three.head.next.val == 2
     assert make_list_three.head.next.next.val == 1
@@ -75,7 +75,7 @@ def test_pop_empty(make_list_empty):
 
 def test_pop_once(make_list_three):
     my_list = make_list_three
-    my_list.pop()
+    assert my_list.pop() == 3
     assert my_list.head.val == 2
     assert my_list.tail.val == 1
 
@@ -83,9 +83,16 @@ def test_pop_once(make_list_three):
 def test_pop_twice(make_list_three):
     my_list = make_list_three
     my_list.pop()
-    my_list.pop()
+    assert my_list.pop() == 2
     assert my_list.head.val == 1
     assert my_list.tail.val == 1
+
+
+def test_pop_to_make_empty(make_list_one):
+    my_list = make_list_one
+    assert my_list.pop() == 1
+    assert my_list.head is None
+    assert my_list.tail is None
 
 
 def test_shift_empty(make_list_empty):
@@ -108,6 +115,13 @@ def test_shift_twice(make_list_three):
     assert my_list.tail.val == 3
 
 
+def test_shift_to_make_empty(make_list_one):
+    my_list = make_list_one
+    assert my_list.shift() == 1
+    assert my_list.head is None
+    assert my_list.tail is None
+
+
 def test_remove_last(make_list_three):
     my_list = make_list_three
     my_list.remove(1)
@@ -124,3 +138,18 @@ def test_remove_middle(make_list_three):
     my_list = make_list_three
     my_list.remove(2)
     assert my_list.head.next.val == 1
+
+
+def test_remove_to_make_empty(make_list_one):
+    my_list = make_list_one
+    my_list.remove(1)
+    assert my_list.head is None
+    assert my_list.tail is None
+
+
+def test_fill_empty_fill(make_list_one):
+    my_list = make_list_one
+    assert my_list.pop() == 1
+    my_list.insert(5)
+    assert my_list.head.val == 5
+    assert my_list.tail.val == 5

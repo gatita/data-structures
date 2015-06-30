@@ -52,13 +52,15 @@ class DLL(object):
         return tmp.val
 
     def shift(self):
+        tmp = self.tail
         if not self.head:
             raise IndexError
+        elif self.head == self.tail:
+            self.head = self.tail = None
         else:
-            tmp = self.tail
             self.tail.prev.next = None
             self.tail = self.tail.prev
-            return tmp.val
+        return tmp.val
 
     def remove(self, val):
         current = self.head
@@ -69,7 +71,9 @@ class DLL(object):
             else:
                 current = current.next
         # check if head node
-        if current == self.head:
+        if self.head == self.tail:
+            self.head = self.tail = None
+        elif current == self.head:
             self.head.next.prev = None
             self.head = self.head.next
         # check if tail node

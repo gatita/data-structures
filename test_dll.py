@@ -6,99 +6,121 @@ from dll import DLL
 
 
 @pytest.fixture()
-def make_list():
+def make_list_empty():
+    return DLL()
+
+
+@pytest.fixture()
+def make_list_one():
+    return DLL([1])
+
+
+@pytest.fixture()
+def make_list_three():
     return DLL([1, 2, 3])
 
 
-# create linked list, == empty list
-def test_create_list_empty():
-    mylist = DLL()
-    assert mylist.head is None
+def test_create_list_empty(make_list_empty):
+    assert make_list_empty.head is None
+    assert make_list_empty.tail is None
 
 
-# create linked list, when passed iterable
-def test_create_list(make_list):
-    assert make_list.size() == 3
-    assert make_list.head.value == 3
+def test_create_list_(make_list_three):
+    assert make_list_three.head.val == 3
+    assert make_list_three.head.next.val == 2
+    assert make_list_three.head.next.next.val == 1
+    assert make_list_three.tail.prev.prev.val == 3
+    assert make_list_three.tail.prev.val == 2
+    assert make_list_three.tail.val == 1
 
 
-# insert to empty list
-def test_insert_node_empty():
-    mylist = DLL()
-    mylist.insert(1)
-    assert mylist.size() == 1
-    assert mylist.head.value == 1
+def test_insert_node_empty(make_list_empty):
+    my_list = make_list_empty
+    my_list.insert(1)
+    assert my_list.head.val == 1
+    assert my_list.tail.val == 1
 
 
-# insert to populated list
-def test_insert_node():
-    mylist = DLL([1, 2, 3])
-    mylist.insert(1)
-    assert mylist.size() == 4
-    assert mylist.head.value == 1
-    mylist.insert(2)
-    assert mylist.size() == 5
-    assert mylist.head.value == 2
+def test_insert_node(make_list_three):
+    my_list = make_list_three
+    my_list.insert(1)
+    assert my_list.head.val == 1
+    assert my_list.tail.val == 1
+    my_list.insert(2)
+    assert my_list.head.val == 2
+    assert my_list.tail.val == 1
 
 
-# pop from empty list
-def test_pop_empty():
-    my_list = DLL()
+def test_append_node_empty(make_list_empty):
+    my_list = make_list_empty
+    my_list.append(1)
+    assert my_list.head.val == 1
+    assert my_list.tail.val == 1
+
+
+def test_append_node(make_list_three):
+    my_list = make_list_three
+    my_list.append(0)
+    assert my_list.head.val == 3
+    assert my_list.tail.val == 0
+    my_list.append(-1)
+    assert my_list.head.val == 3
+    assert my_list.tail.val == -1
+
+
+def test_pop_empty(make_list_empty):
     with pytest.raises(IndexError):
-        my_list.pop()
+        make_list_empty.pop()
 
 
-# pop from populated list
-def test_pop():
-    mylist = DLL([1, 2, 3])
-    mylist.pop()
-    assert mylist.size() == 2
-    assert mylist.head.value == 2
+def test_pop_once(make_list_three):
+    my_list = make_list_three
+    my_list.pop()
+    assert my_list.head.val == 2
+    assert my_list.tail.val == 1
 
 
-# test size on empty linked list
-def test_size_empty():
-    mylist = DLL()
-    assert mylist.size() == 0
+def test_pop_twice(make_list_three):
+    my_list = make_list_three
+    my_list.pop()
+    my_list.pop()
+    assert my_list.head.val == 1
+    assert my_list.tail.val == 1
 
 
-# test size function
-def test_size():
-    my_list = DLL([1, 2, 3])
-    assert my_list.size() == 3
+def test_shift_empty(make_list_empty):
+    with pytest.raises(IndexError):
+        make_list_empty.shift()
 
 
-# add elements, search for non-existent val
-def test_search_fake():
-    mylist = DLL([1, 2, 3])
-    assert mylist.search(4) is None
+def test_shift_once(make_list_three):
+    my_list = make_list_three
+    assert my_list.shift() == 1
+    assert my_list.head.val == 3
+    assert my_list.tail.val == 2
 
 
-# search for real val
-def test_search():
-    mylist = DLL([1, 2, 3])
-    assert mylist.search(3).value == 3
+def test_shift_twice(make_list_three):
+    my_list = make_list_three
+    my_list.shift()
+    assert my_list.shift() == 2
+    assert my_list.head.val == 3
+    assert my_list.tail.val == 3
 
 
-def test_remove_last():
-    mylist = DLL([1, 2, 3])
-    mylist.remove(mylist.search(1))
-    assert mylist.head.next.next is None
+def test_remove_last(make_list_three):
+    my_list = make_list_three
+    my_list.remove(1)
+    assert my_list.head.next.next is None
 
 
-# remove element
-def test_remove_first():
-    mylist = DLL([1, 2, 3])
-    mylist.remove(mylist.search(3))
-    assert mylist.head.value == 2
+def test_remove_first(make_list_three):
+    my_list = make_list_three
+    my_list.remove(3)
+    assert my_list.head.val == 2
 
 
-def test_remove_middle():
-    mylist = DLL([1, 2, 3])
-    mylist.remove(mylist.search(2))
-    assert mylist.head.next.value == 1
-
-
-def test_display():
-    mylist = DLL([1, 2, 3])
-    assert mylist.display() == '(3, 2, 1)'
+def test_remove_middle(make_list_three):
+    my_list = make_list_three
+    my_list.remove(2)
+    assert my_list.head.next.val == 1

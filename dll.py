@@ -10,6 +10,8 @@ class Node(object):
 
 
 class DLL(object):
+    """ """
+
     def __init__(self, vals=None):
         self.head = None
         self.tail = None
@@ -75,10 +77,4 @@ class DLL(object):
         else:
             current.prev.next = current.next
             current.next.prev = current.prev
-            
-
-
-
-
-
 

@@ -14,7 +14,9 @@ class DLL(object):
         self.head = None
         self.tail = None
 
-        # if pass iterable
+        if vals:
+            for v in vals:
+                self.insert(v)
 
     def insert(self, val):
         """Insert the value 'val' at the head of the list"""

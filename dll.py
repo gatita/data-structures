@@ -48,7 +48,13 @@ class DLL(object):
             return tmp.val
 
     def shift(self):
-        pass
+        if not self.head:
+            raise IndexError
+        else:
+            tmp = self.tail
+            self.tail.prev.next = None
+            self.tail = self.tail.prev
+            return tmp.val
 
     def remove(self, val):
         pass

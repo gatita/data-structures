@@ -48,7 +48,37 @@ class DLL(object):
             return tmp.val
 
     def shift(self):
-        pass
+        if not self.head:
+            raise IndexError
+        else:
+            tmp = self.tail
+            self.tail.prev.next = None
+            self.tail = self.tail.prev
+            return tmp.val
 
     def remove(self, val):
-        pass
+        current = self.head
+        # find the node
+        while True:
+            if current.val == val:
+                break
+            else:
+                current = current.next
+        # check if head node
+        if current == self.head:
+            self.head.next.prev = None
+            self.head = self.head.next
+        # check if tail node
+        elif current == self.tail:
+            self.tail.prev.next = None
+            self.tail = self.tail.prev
+        else:
+            current.prev.next = current.next
+            current.next.prev = current.prev
+            
+
+
+
+
+
+

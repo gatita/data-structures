@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 
 
 class Node(object):
-    def __init__(self, val, next=None, prev=None):
+    def __init__(self, val, _next=None, _prev=None):
         self.val = val
-        self.next = None
-        self.prev = None
+        self.next = _next
+        self.prev = _prev
 
 
 class DLL(object):
@@ -53,9 +53,9 @@ class DLL(object):
         value"""
 
         tmp = self.head
-        if not self.head:
+        if self.head is None:
             raise IndexError
-        elif self.head == self.tail:
+        elif self.head is self.tail:
             self.head = self.tail = None
         else:
             self.head.next.prev = None
@@ -67,7 +67,7 @@ class DLL(object):
         value"""
 
         tmp = self.tail
-        if not self.head:
+        if self.head is None:
             raise IndexError
         elif self.head == self.tail:
             self.head = self.tail = None
@@ -83,17 +83,19 @@ class DLL(object):
 
         # find the node
         while True:
-            if current.val == val:
+            if current is None:
+                raise IndexError('val not in list')
+            elif current.val == val:
                 break
             else:
                 current = current.next
 
-        if self.head == self.tail:
+        if self.head is self.tail:
             self.head = self.tail = None
-        elif current == self.head:
+        elif current is self.head:
             self.head.next.prev = None
             self.head = self.head.next
-        elif current == self.tail:
+        elif current is self.tail:
             self.tail.prev.next = None
             self.tail = self.tail.prev
         else:

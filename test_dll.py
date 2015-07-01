@@ -148,7 +148,7 @@ def test_remove_to_make_empty(make_list_one):
 
 
 def test_remove_val_not_in_list(make_list_three):
-    with pytest.raises(AttributeError):
+    with pytest.raises(IndexError):
         make_list_three.remove(9)
 
 

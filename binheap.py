@@ -22,16 +22,19 @@ class BinaryHeap(object):
         self._perc_up(i)
 
     def pop(self):
+        if len(self.heap) == 0:
+            raise IndexError
+
         self.heap[0] = self.heap[len(self.heap)-1]
         self._perc_down()
 
     def _perc_up(self, i):
-        while i / 2 > 0:
-            if self.heap[i] < self.heap[i / 2]:
-                self.heap[i], self.heap[i / 2] = self.heap[i / 2], self.heap[i]
-            i = i / 2
+        while (i-1) / 2 > 0:
+            if self.heap[i] < self.heap[(i-1) / 2]:
+                self.heap[i], self.heap[(i-1) / 2] = self.heap[(i-1) / 2], self.heap[i]
+            i = (i-1) / 2
 
-    def _perc_down(self, i):
+    def _perc_down(self, i=0):
         size = len(self.heap) - 1
         while i * 2 <= size:
             if self.heap[i] > self.heap[i * 2 + 1]:

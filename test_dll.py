@@ -147,6 +147,11 @@ def test_remove_to_make_empty(make_list_one):
     assert my_list.tail is None
 
 
+def test_remove_val_not_in_list(make_list_three):
+    with pytest.raises(AttributeError):
+        make_list_three.remove(9)
+
+
 def test_fill_empty_fill(make_list_one):
     my_list = make_list_one
     assert my_list.pop() == 1

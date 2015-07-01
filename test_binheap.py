@@ -41,8 +41,37 @@ def test_create_heap_three(make_heap_three):
     assert heap.heap[2] == 3
 
 
-def test_push():
-    pass
+def test_push_empty(make_heap_empty):
+    heap = make_heap_empty
+    assert len(heap) == 0
+    heap.push(5)
+    assert heap.heap[0] == 5
+
+
+def test_push_populated(make_heap_three):
+    heap = make_heap_three
+    assert len(heap) == 3
+    heap.push(5)
+    heap.push(6)
+    heap.push(7)
+    assert heap.heap[0] == 1
+    assert heap.heap[3] == 5
+    assert heap.heap[5] == 7
+
+
+def test_make_heap_big_random():
+    heap = binheap.BinaryHeap([5, 2, 7, 1, 0, 3, 6, 8, 4, 9])
+    assert heap.heap[0] == 0
+    assert heap.heap[1] == 1
+    assert heap.heap[2] == 3
+    assert heap.heap[3] == 4
+    assert heap.heap[4] == 2
+    assert heap.heap[5] == 7
+    assert heap.heap[6] == 7
+    assert heap.heap[7] == 8
+    assert heap.heap[8] == 5
+    assert heap.heap[0] == 9
+
 
 
 def test_pop():

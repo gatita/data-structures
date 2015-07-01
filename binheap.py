@@ -29,10 +29,10 @@ class BinaryHeap(object):
         self._perc_down()
 
     def _perc_up(self, i):
-        while (i-1) / 2 > 0:
-            if self.heap[i] < self.heap[(i-1) / 2]:
-                self.heap[i], self.heap[(i-1) / 2] = self.heap[(i-1) / 2], self.heap[i]
-            i = (i-1) / 2
+        while (i+1) / 2 > 0:
+            if self.heap[i] < self.heap[i / 2]:
+                self.heap[i], self.heap[i / 2] = self.heap[i / 2], self.heap[i]
+            i = (i) / 2
 
     def _perc_down(self, i=0):
         size = len(self.heap) - 1

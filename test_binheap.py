@@ -66,8 +66,9 @@ def test_make_heap_random():
     heap.push(7)
     # heap.push(4)
     # heap.push(1)
-    assert heap.heap[0] == 2
-    assert heap.heap[1] == 9
+    assert heap.heap[0] == 7
+    assert heap.heap[1] == 8
+    assert heap.heap[2] == 9
     # assert heap.heap[2] == 5
     # assert heap.heap[3] == 9
     # assert heap.heap[4] == 4
@@ -75,15 +76,15 @@ def test_make_heap_random():
 
 def test_make_heap_big_random():
     heap = binheap.BinaryHeap([5, 2, 7, 1, 0, 3, 6, 8, 4, 9])
-    assert heap.heap[0] == 5
-    assert heap.heap[1] == 2
-    assert heap.heap[2] == 7
-    assert heap.heap[3] == 1
-    assert heap.heap[4] == 0
-    assert heap.heap[5] == 3
+    assert heap.heap[0] == 0
+    assert heap.heap[1] == 1
+    assert heap.heap[2] == 3
+    assert heap.heap[3] == 4
+    assert heap.heap[4] == 2
+    assert heap.heap[5] == 7
     assert heap.heap[6] == 6
     assert heap.heap[7] == 8
-    assert heap.heap[8] == 4
+    assert heap.heap[8] == 5
     assert heap.heap[0] == 9
 
 

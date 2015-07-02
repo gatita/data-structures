@@ -43,18 +43,22 @@ class BinaryHeap(object):
 
     def _perc_down(self, i=0):
         """bubbles the node down"""
-        size = len(self.heap) - 1
-        while i * 2 < size:
-            if (self.heap[i] > self.heap[i * 2 + 1]) or (self.heap[i] > self.heap[(i+1) * 2]):
-                if self.heap[i * 2 + 1] < self.heap[(i+1) * 2]:
-                    self.heap[i], self.heap[i*2+1] =\
-                        self.heap[i*2+1], self.heap[i]
-                    i = i * 2 + 1
 
-                else:
-                    self.heap[i], self.heap[(i+1) * 2] =\
-                        self.heap[(i+1) * 2], self.heap[i]
-                    i = (i+1) * 2
+        while 2*i < len(self.heap)-1:
+            smaller = self._get_child(i)
+
+            if self.heap[i] > self.heap[smaller]:
+                self.heap[i], self.heap[smaller] = self.heap[smaller], self.heap[i]
+            i = smaller
+
+    def _get_child(self, i):
+        if 2*i+2 >= len(self.heap):
+            return 2*i + 1
+        else:
+            if self.heap[2*i + 1] < self.heap[2*i + 2]:
+                return 2*i + 1
+            else:
+                return 2*i + 2
 
     def __len__(self):
         return len(self.heap)

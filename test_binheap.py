@@ -91,26 +91,33 @@ def test_pop_empty(make_heap_empty):
 
 def test_pop_populated(make_heap_three):
     heap = make_heap_three
+    print(heap.heap)
     heap.pop()
+    print(heap.heap)
     assert heap.heap[0] == 2
     assert heap.heap[1] == 3
 
 
 def test_pop_twice(make_heap_three):
     heap = make_heap_three
+    print(heap.heap)
     heap.pop()
     heap.pop()
+    print(heap.heap)
     assert heap.heap[0] == 3
 
 
 def test_pop_push_pop(make_heap_three):
     heap = make_heap_three
+    print(heap.heap)
     heap.pop()
     heap.pop()
     heap.pop()
+    print(heap.heap)
     heap.push(5)
     heap.push(3)
     heap.push(1)
+    print(heap.heap)
     assert heap.heap[0] == 1
     assert heap.heap[1] == 5
     assert heap.heap[2] == 3
@@ -118,20 +125,22 @@ def test_pop_push_pop(make_heap_three):
 
 def test_make_heap_big_random_again():
     heap = binheap.BinaryHeap([5, 2, 7, 1, 0, 3, 6, 8, 4, 9])
+    print(heap.heap)
     heap.pop()
     heap.pop()
     heap.pop()
+    print(heap.heap)
     heap.push(1)
     heap.push(1)
     heap.push(1)
     print(heap.heap)
     assert heap.heap[0] == 1
     assert heap.heap[1] == 1
-    assert heap.heap[2] == 3
+    assert heap.heap[2] == 6
     assert heap.heap[3] == 1
-    assert heap.heap[4] == 2
+    assert heap.heap[4] == 3
     assert heap.heap[5] == 7
-    assert heap.heap[6] == 6
-    assert heap.heap[7] == 9
-    assert heap.heap[8] == 8
-    assert heap.heap[9] == 5
+    assert heap.heap[6] == 8
+    assert heap.heap[7] == 5
+    assert heap.heap[8] == 4
+    assert heap.heap[9] == 9

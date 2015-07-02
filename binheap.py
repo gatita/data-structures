@@ -48,7 +48,8 @@ class BinaryHeap(object):
             smaller = self._get_child(i)
 
             if self.heap[i] > self.heap[smaller]:
-                self.heap[i], self.heap[smaller] = self.heap[smaller], self.heap[i]
+                self.heap[i], self.heap[smaller] =\
+                    self.heap[smaller], self.heap[i]
             i = smaller
 
     def _get_child(self, i):

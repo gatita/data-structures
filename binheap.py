@@ -45,15 +45,16 @@ class BinaryHeap(object):
         """bubbles the node down"""
         size = len(self.heap) - 1
         while i * 2 < size:
-            if self.heap[i] > self.heap[i * 2 + 1]:
-                self.heap[i], self.heap[i*2+1] =\
-                    self.heap[i*2+1], self.heap[i]
-                i = i * 2 + 1
+            if (self.heap[i] > self.heap[i * 2 + 1]) or (self.heap[i] > self.heap[(i+1) * 2]):
+                if self.heap[i * 2 + 1] < self.heap[(i+1) * 2]:
+                    self.heap[i], self.heap[i*2+1] =\
+                        self.heap[i*2+1], self.heap[i]
+                    i = i * 2 + 1
 
-            elif self.heap[i] > self.heap[(i+1) * 2]:
-                self.heap[i], self.heap[(i+1) * 2] =\
-                    self.heap[(i+1) * 2], self.heap[i]
-                i = (i+1) * 2
+                else:
+                    self.heap[i], self.heap[(i+1) * 2] =\
+                        self.heap[(i+1) * 2], self.heap[i]
+                    i = (i+1) * 2
 
     def __len__(self):
         return len(self.heap)

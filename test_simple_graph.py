@@ -97,6 +97,13 @@ def test_add_edge(make_graph_no_edges):
     assert my_graph.graph['a'] == ['b']
 
 
+def test_add_edge_multiples(make_graph_no_edges):
+    my_graph = make_graph_no_edges
+    my_graph.add_edge('a', 'b')
+    my_graph.add_edge('a', 'b')
+    assert my_graph.graph['a'].count('b') == 1
+
+
 def test_del_node_exists(make_graph_three):
     my_graph = make_graph_three
     assert 'a' in my_graph.graph

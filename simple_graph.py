@@ -26,7 +26,6 @@ class SimpleGraph(object):
         self.graph[n] = []
 
     def add_edge(self, n1, n2):
-        # don't add connections twice
         """Add a new edge to the graph connecting 'n1' and 'n2'.
 
         'n1' points to 'n2'
@@ -34,11 +33,16 @@ class SimpleGraph(object):
         If either n1 or n2 are not already present in the graph,
         they should be added.
         """
+
+        # check if nodes exist
         if n1 not in self.graph:
             self.add_node(n1)
-        self.graph[n1].append(n2)
         if n2 not in self.graph:
             self.add_node(n2)
+
+        # check if edge already exists
+        if n2 not in self.graph[n1]:
+            self.graph[n1].append(n2)
 
     def del_node(self, n):
         """Delete the node 'n' from the graph.

@@ -26,6 +26,7 @@ class SimpleGraph(object):
         self.graph[n] = []
 
     def add_edge(self, n1, n2):
+        # don't add connections twice
         """Add a new edge to the graph connecting 'n1' and 'n2'.
 
         'n1' points to 'n2'
@@ -46,7 +47,8 @@ class SimpleGraph(object):
         """
         del self.graph[n]
         for k, v in self.graph.iteritems():
-            del v[v.index(n)]
+            if n in v:
+                del v[v.index(n)]
 
     def del_edge(self, n1, n2):
         """Delete the edge connecting 'n1' and 'n2' from the graph.
@@ -69,7 +71,7 @@ class SimpleGraph(object):
         if n in self.graph:
             return self.graph[n]
         else:
-            raise IndexError('Neighbors: Node not in graph.')
+            raise KeyError('Neighbors: Node not in graph.')
 
     def adjacent(self, n1, n2):
         """Return True if there is an edge connecting 'n1' and 'n2'.

@@ -42,6 +42,28 @@ def make_graph_big():
     return my_graph
 
 
+@pytest.fixture
+def make_graph():
+    g = SimpleGraph()
+    g.add_edge('a', 'b')
+    g.add_edge('b', 'c')
+    g.add_edge('c', 'f')
+    g.add_edge('g', 'f')
+    g.add_edge('a', 'd')
+    g.add_edge('d', 'e')
+    g.add_edge('e', 'a')
+    return g
+
+
+@pytest.fixture
+def make_graph_cycle():
+    g = SimpleGraph()
+    g.add_edge('a', 'b')
+    g.add_edge('b', 'c')
+    g.add_edge('c', 'a')
+    return g
+
+
 def test_nodes(make_graph_three):
     my_graph = make_graph_three
     nodes = sorted(my_graph.nodes())
@@ -168,3 +190,59 @@ def test_adjacent_no_node(make_graph_big):
     my_graph = make_graph_big
     with pytest.raises(IndexError):
         my_graph.adjacent('z', 'a')
+
+
+def test_breadth_first_traverasal(make_graph):
+    g = make_graph
+    path = g.breadth_first_traversal('a')
+    assert path == [u'a', u'b', u'd', u'c', u'e', u'f']
+
+
+def test_depth_first_traverasal(make_graph):
+    g = make_graph
+    path = g.depth_first_traversal('a')
+    assert path == [u'a', u'b', u'c', u'f', u'd', u'e']
+
+
+def test_breadth_first_traversal_empty(make_graph_empty):
+    """providing 'start' node that doesn't exists raises KeyError"""
+    g = make_graph_empty
+    with pytest.raises(KeyError):
+        g.breadth_first_traversal('a')
+
+
+def test_depth_first_traversal_empty(make_graph_empty):
+    """providing 'start' node that doesn't exists raises KeyError"""
+    g = make_graph_empty
+    with pytest.raises(KeyError):
+        g.depth_first_traversal('a')
+
+
+def test_breadth_first_excluded(make_graph):
+    """'g' points to 'f', but nobody points to 'g'
+    so 'g' should not be in the path
+    """
+    g = make_graph
+    path = g.breadth_first_traversal('a')
+    assert 'g' not in path
+
+
+def test_depth_first_excluded(make_graph):
+    """'g' points to 'f', but nobody points to 'g'
+    so 'g' should not be in the path
+    """
+    g = make_graph
+    path = g.depth_first_traversal('a')
+    assert 'g' not in path
+
+
+def test_breadth_first_cycle(make_graph_cycle):
+    g = make_graph_cycle
+    path = g.breadth_first_traversal('a')
+    assert path == [u'a', u'b', u'c']
+
+
+def test_depth_first_cycle(make_graph_cycle):
+    g = make_graph_cycle
+    path = g.depth_first_traversal('a')
+    assert path == [u'a', u'b', u'c']

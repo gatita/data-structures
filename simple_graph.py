@@ -87,3 +87,60 @@ class SimpleGraph(object):
         if n1 not in self.graph or n2 not in self.graph:
             raise IndexError('Adjacent: At least one node not found.')
         return n2 in self.graph[n1]
+
+    def depth_first_traversal(self, start):
+        """Perform a full depth first traversal of the graph starting
+        at 'start'.
+
+        Return the full visited path when the traversal is complete
+        as a list.
+        """
+        path = []
+        queue = [start]
+
+        while queue:
+            node = queue.pop(0)
+            if node not in path:
+                path.append(node)
+                queue = self.neighbors(node) + queue
+        return path
+
+    def breadth_first_traversal(self, start):
+        """Perform a full breadth first traversal of the graph starting
+        at 'start'.
+
+        Return the full visited path when the traversal is complete
+        as a list.
+        """
+        path = []
+        queue = [start]
+
+        while queue:
+            node = queue.pop(0)
+            if node not in path:
+                path.append(node)
+                queue = queue + self.neighbors(node)
+        return path
+
+if __name__ == '__main__':
+    g = SimpleGraph()
+    g.add_edge('a', 'b')
+    g.add_edge('b', 'c')
+    g.add_edge('c', 'f')
+    g.add_edge('g', 'f')
+    g.add_edge('a', 'd')
+    g.add_edge('d', 'e')
+    g.add_edge('e', 'a')
+    print("df1: " + repr(g.depth_first_traversal('a')))
+    print("bf1: " + repr(g.breadth_first_traversal('a')))
+
+    g2 = SimpleGraph()
+    g2.add_edge('a', 'b')
+    g2.add_edge('a', 'c')
+    g2.add_edge('a', 'e')
+    g2.add_edge('b', 'd')
+    g2.add_edge('b', 'f')
+    g2.add_edge('f', 'e')
+    g2.add_edge('c', 'g')
+    print("df2: " + repr(g2.depth_first_traversal('a')))
+    print("bf2: " + repr(g2.breadth_first_traversal('a')))

@@ -118,13 +118,6 @@ def test_add_edge(make_graph_no_edges):
     my_graph.add_edge('a', 'b')
     assert my_graph.graph['a'] == {'b': 0}
 
-# no longer valid because dictionary cannot have multiples
-# def test_add_edge_multiples(make_graph_no_edges):
-#     my_graph = make_graph_no_edges
-#     my_graph.add_edge('a', 'b')
-#     my_graph.add_edge('a', 'b')
-#     assert my_graph.graph['a'].count('b') == 1
-
 
 def test_del_node_exists(make_graph_three):
     my_graph = make_graph_three
@@ -246,3 +239,17 @@ def test_depth_first_cycle(make_graph_cycle):
     g = make_graph_cycle
     path = g.depth_first_traversal('a')
     assert path == [u'a', u'b', u'c']
+
+
+def test_add_weighted_edges(make_graph_no_edges):
+    g = make_graph_no_edges
+    g.add_edge('a', 'c', 8)
+    g.add_edge('b', 'a', 5)
+    assert g.graph['a']['c'] == 8
+    assert g.graph['b']['a'] == 5
+
+
+def test_add_edge_no_weight(make_graph_no_edges):
+    my_graph = make_graph_no_edges
+    my_graph.add_edge('a', 'b')
+    assert my_graph.graph['a'] == {'b': 0}

@@ -10,3 +10,4 @@ def insertion_sort(l):
             l[i] = l[i-1]
             index -= 1
         l[index] = val
+    return l

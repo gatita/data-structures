@@ -1,4 +1,4 @@
-# data-structures [![Build Status](https://travis-ci.org/wilson0xb4/data-structures.svg?branch=master)](https://travis-ci.org/wilson0xb4/data-structures)
+# data-structures [![Build Status](https://travis-ci.org/gatita/data-structures.svg?branch=master)](https://travis-ci.org/gatita/data-structures)
 Sample code for a number of classic data structures implemented in Python
 
 

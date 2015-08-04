@@ -35,8 +35,8 @@ def merge(left, right):
 if __name__ == '__main__':
 
     # large inputs
-    worst_case = [i for i in range(1, 10 ** 6) if i % 2] + \
-        [i for i in range(1, 10 ** 6) if not i % 2]
+    worst_case = [i for i in range(1, 10**6) if i % 2] + \
+        [i for i in range(1, 10**6) if not i % 2]
     best_case = range(1, 10000)
 
     # smaller inputs

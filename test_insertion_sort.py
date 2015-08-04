@@ -38,5 +38,4 @@ def test_sorted_list(sorted_list):
 
 
 def test_reversed_list(worst_case):
-    print list(reversed(worst_case))
     assert insertion_sort(worst_case) == range(16)

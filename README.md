@@ -35,6 +35,20 @@ A doubly linked list is better to use in situations where you would want to trav
 Extends Simple Graph to allow for weighted edges.
 
 
+## Sorting Algorithms
+
+### Insertion Sort
+Simple sorting algorithm that builds the final sorted list
+one item at a time.
+
+### Merge Sort
+Comparison-based sorting algorithm, which divides the unsorted
+list into n sublists, each containing 1 element, and repeatedly
+merges the sublists to produce new sorted sublists, until
+only 1 sublist remains.
+
+
+
 ### Collaborators
 * Andrew
 * Grace

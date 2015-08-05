@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from timeit import timeit
+from random import shuffle
 
 
 def mergesort(l):
@@ -33,24 +34,34 @@ if __name__ == '__main__':
     # large inputs
     worst_case = [i for i in range(1, 10**6) if i % 2] + \
         [i for i in range(1, 10**6) if not i % 2]
-    best_case = range(1, 10000)
+    best_case = range(1, 1000000)
 
     # smaller inputs
     s_worst_case = [i for i in range(1, 50) if i % 2] + \
         [i for i in range(1, 50) if not i % 2]
     s_best_case = range(1, 50)
 
+    # random inputs
+    shuffled = range(1, 10**6)
+    shuffle(shuffled)
+
     setup1 = 'from __main__ import mergesort, worst_case, best_case'
     setup2 = 'from __main__ import mergesort, s_worst_case, s_best_case'
+    setup3 = 'from __main__ import mergesort, shuffled'
 
     print 'best case, input size = 10^6: ', timeit(
         'mergesort(best_case)',
         setup=setup1,
         number=1)
 
-    print 'worst case, input size = 10^6: ', timeit(
+    print 'supposed worst case, input size = 10^6: ', timeit(
         'mergesort(worst_case)',
         setup=setup1,
+        number=1)
+
+    print 'random inputs, input size = 10^6: ', timeit(
+        'mergesort(shuffled)',
+        setup=setup3,
         number=1)
 
     print 'best case, input size = 50: ', timeit(

@@ -1,4 +1,4 @@
-# data-structures [![Build Status](https://travis-ci.org/wilson0xb4/data-structures.svg?branch=master)](https://travis-ci.org/wilson0xb4/data-structures)
+# data-structures [![Build Status](https://travis-ci.org/gatita/data-structures.svg?branch=master)](https://travis-ci.org/gatita/data-structures)
 Sample code for a number of classic data structures implemented in Python
 
 
@@ -33,6 +33,20 @@ A doubly linked list is better to use in situations where you would want to trav
 
 ## Weighted Graph
 Extends Simple Graph to allow for weighted edges.
+
+
+## Sorting Algorithms
+
+### Insertion Sort
+Simple sorting algorithm that builds the final sorted list
+one item at a time.
+
+### Merge Sort
+Comparison-based sorting algorithm, which divides the unsorted
+list into n sublists, each containing 1 element, and repeatedly
+merges the sublists to produce new sorted sublists, until
+only 1 sublist remains.
+
 
 
 ### Collaborators

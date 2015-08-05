@@ -7,7 +7,7 @@ def mergesort(l):
     if len(l) <= 1:
         return l
     else:
-        middle = len(l)/2
+        middle = len(l)//2
         left = l[:middle]
         right = l[middle:]
         return merge(mergesort(left), mergesort(right))
@@ -23,12 +23,8 @@ def merge(left, right):
         else:
             merged.append(left[i])
             i += 1
-    while i < len(left):
-        merged.append(left[i])
-        i += 1
-    while j < len(right):
-        merged.append(right[j])
-        j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
     return merged
 
 

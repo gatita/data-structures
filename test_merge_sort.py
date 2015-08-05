@@ -32,3 +32,7 @@ def test_reversed_sorted():
 
 def test_empty_list():
     assert mergesort([]) == []
+
+
+def test_list_len_one():
+    assert mergesort([2]) == [2]

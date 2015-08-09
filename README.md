@@ -48,6 +48,15 @@ merges the sublists to produce new sorted sublists, until
 only 1 sublist remains.
 
 
+### Quicksort
+Divide and conquer algorithm, which divides the large array into
+two smaller sub-arrays, and recursively sorts the sub-arrays by choosing
+a pivot and reordering the array so that all elements with values
+smaller than the pivot come before it, and elements with values larger
+than the pivot come after it. This implementation sets the pivot to
+the first element in the list, and uses the Hoare partition scheme.
+
+
 
 ### Collaborators
 * Andrew

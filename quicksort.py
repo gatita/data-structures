@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from timeit import timeit
+import random
+import sys
 
 '''resources:
 http://algs4.cs.princeton.edu/23quicksort/Quick.java.html
@@ -20,21 +23,35 @@ def _partition(list_, lo, hi):
     pivot = list_[lo]
     i = lo + 1
     j = hi
-    print 'starting: ', list_[lo:hi+1]
 
     while True:
-        print i, j
         while list_[i] <= pivot and i != hi:
             i += 1
-            print "i: ", i
         while list_[j] >= pivot and j != lo:
             j -= 1
-            print "j: ", j
         if i < j:
             list_[i], list_[j] = list_[j], list_[i]
-            print list_
         else:
             list_[lo], list_[j] = list_[j], list_[lo]
-            print list_
-            print 'split: ', j
             return j
+
+
+if __name__ == '__main__':
+    sys.setrecursionlimit(3000)
+
+    # Best and worst cases for Hoare partition scheme
+    worst_case = range(1000)
+    best_case = range(1000)
+    random.shuffle(best_case)
+
+    setup = 'from __main__ import quicksort, best_case, worst_case'
+
+    print 'best case, pivot = l[0], hoare partition: ', timeit(
+        'quicksort(best_case)',
+        setup=setup,
+        number=100)
+
+    print 'worst case, pivot = l[0], hoare partition: ', timeit(
+        'quicksort(worst_case)',
+        setup=setup,
+        number=100)

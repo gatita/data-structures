@@ -56,6 +56,10 @@ smaller than the pivot come before it, and elements with values larger
 than the pivot come after it. This implementation sets the pivot to
 the first element in the list, and uses the Hoare partition scheme.
 
+### Radix Sort
+Non-comparative integer sorting algorithm. Sorts list items into buckets
+based on Least Significant Digit.
+
 
 
 ### Collaborators

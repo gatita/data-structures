@@ -6,8 +6,11 @@ import sys
 
 
 def radix_sort(list_, base=10):
-    place = 1
-    max_length = len(str(max(list_)))
+    if len(list_) == 0:
+        return list_
+    else:
+        place = 1
+        max_length = len(str(max(list_)))
 
     for x in range(max_length):
         output = []

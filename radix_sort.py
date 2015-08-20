@@ -13,19 +13,19 @@ def radix_sort(list_, base=10):
         max_length = len(str(max(list_)))
 
     for x in range(max_length):
-        output = []
         buckets = [[] for i in range(base)]
 
         for i in list_:
             digit = i // place
             buckets[digit % base].append(i)
 
+        list_ = []
         for bucket in buckets:
-            output.extend(bucket)
-        list_ = output[:]
+            list_.extend(bucket)
+
         place *= base
 
-    return output
+    return list_
 
 
 if __name__ == '__main__':

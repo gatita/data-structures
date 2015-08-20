@@ -31,7 +31,7 @@ def radix_sort(list_, base=10):
 if __name__ == '__main__':
     """
     Time best and worst cases for radix sort, where best case
-    is each list item is as short as possible, and worst case is
+    is a list of small inputs, and worst case is
     a list of very large inputs.
     """
     best_case = [random.randint(0, 9) for x in range(10000)]
